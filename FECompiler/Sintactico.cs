@@ -7,11 +7,14 @@ using BLL;
 using Irony.Parsing;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
+using System.Diagnostics;
 
 namespace FECompiler
 {
     class Sintactico
     {
+
         public Boolean EsValido(String Cadena)
         {
             #region parser
@@ -42,7 +45,7 @@ namespace FECompiler
                 Recorrido(raiz.Root, ref cuerpo2, 0);//recorrido postorden del arbol
                 archivo(cuerpo2);//genera la imagen en base a la variable cuerpo2
                 Recorrido sa = new Recorrido(); //instanciacion de la clase que recorre el arbol
-                MessageBox.Show(sa.salida(raiz.Root));//mando a llamar el metodo que me ejecuta el la expresion aritmetica 
+                Ejecutar(sa.salida(raiz.Root));//mando a llamar el metodo que me ejecuta el la expresion aritmetica 
                 return true;
             }
             #endregion
@@ -90,6 +93,16 @@ namespace FECompiler
                 Recorrido(hijos, ref cuerpo, var);
             }
 
+        }
+
+        public void Ejecutar(string resultado)
+        {
+            string fileName = "imprimir.bat";
+            FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine("@echo off \ntitle FECompiler \necho El Resultado es: " + resultado + " \n\n\npause");
+            writer.Close();
+            Process.Start(@"C:\Users\Root\Desktop\Lenguaje\Proyecto\FECompiler\bin\Debug\imprimir.bat");
         }
     }
 }

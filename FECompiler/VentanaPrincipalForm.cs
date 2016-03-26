@@ -9,17 +9,11 @@ namespace FECompiler
 {
     public partial class MainForm : Form
     {
-        [System.Runtime.InteropServices.DllImport("Kernel32")]
-        public static extern bool AllocConsole();
-        [System.Runtime.InteropServices.DllImport("Kernel32")]
-        public static extern bool FreeConsole();
 
         public MainForm()
         {
             InitializeComponent();
-        }
-
-   
+        }   
 
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -64,19 +58,6 @@ namespace FECompiler
             }
         }
 
-        public void Ejecutar(string resultado)
-        {
-            Thread.Sleep(2000);
-            AllocConsole();
-            Console.Title = "FECompiler 0.1.3";
-            Console.WriteLine("El resultado es: "+resultado);
-            Console.Write("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            Console.Write("------------------------------------------------------------\n");
-            Console.Write("por favor precione una tecle para continuar...");
-            Console.ReadKey();
-            FreeConsole();
-        }
-
         private void strarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Sintactico sint = new Sintactico();
@@ -88,30 +69,7 @@ namespace FECompiler
             {
                 MessageBox.Show("Error :(");
             }
-            //Process programa = new Process();
-            //ProcessStartInfo info = new ProcessStartInfo("cmd", "/c " + "ipconfig");
-            //info.WindowStyle = ProcessWindowStyle.Minimized; //Iniciamos la aplicación minimizada
-            //info.Arguments = "ipconfig";
-            //programa = Process.Start(info);
-            //Lanzamos nuestra aplicación utilizando nuestro objeto de tipo ProcessStartInfo
-            // Compilar();
-            //Indicamos que deseamos inicializar el proceso cmd.exe junto a un comando de arranque. 
-            //(/C, le indicamos al proceso cmd que deseamos que cuando termine la tarea asignada se cierre el proceso).
-            //Para mas informacion consulte la ayuda de la consola con cmd.exe /? 
-            //System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + "ipconfig");
-            // Indicamos que la salida del proceso se redireccione en un Stream
-            //procStartInfo.RedirectStandardOutput = true;
-            //procStartInfo.UseShellExecute = false;
-            ////Indica que el proceso no despliegue una pantalla negra (El proceso se ejecuta en background)
-            ////procStartInfo.CreateNoWindow = false;
-            ////Inicializa el proceso
-            //System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            //proc.StartInfo = procStartInfo;
-            //proc.Start();
-            ////Consigue la salida de la Consola(Stream) y devuelve una cadena de texto
-            //string result = proc.StandardOutput.ReadToEnd();
-            ////Muestra en pantalla la salida del Comando
-            //Console.WriteLine(result);
         }
+
     }
 }
