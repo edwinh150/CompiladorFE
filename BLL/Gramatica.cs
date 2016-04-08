@@ -42,23 +42,7 @@ namespace BLL
                  | S1 + menos + S1
                  | pa + S1 + pc
                  | numero
-                 | SyntaxError; //para hacer una buena recuperacion de errores se tiene que mandar a un estado por ejemplo SyntaxError + S0 (pero la ejecucion tiene que soportar eso o predecirlo)
-
-
-            //gramatica no ambigua mas nodos creados 
-            /* S0.Rule = S1;
-
-             S1.Rule = S1 + mas + S2
-                 | S1 + menos + S2
-                 | S2;
-
-             S2.Rule = S2 + mul + S3
-                 | S2 + div + S3
-                 | S3;
-
-             S3.Rule = pa + S3 + pc
-                 | numero;
-             */
+                 | SyntaxError;
 
 
             #endregion
@@ -68,7 +52,6 @@ namespace BLL
             RegisterOperators(2, Associativity.Left, "*", "/");
             RegisterOperators(1, Associativity.Left, "+", "-");
             #endregion
-            //89*78-65+56/45
         }
     }
 }

@@ -8,16 +8,16 @@ namespace BLL
 {
     public class Recorrido
     {
-        public string salida(ParseTreeNode raiz) // esto es quivalente a decir S0->S1{print(S0.resultado)}
+        public string salida(ParseTreeNode raiz)
         {
             return MiRecorrido(raiz.ChildNodes[0]).ToString();
         }
 
-        private int MiRecorrido(ParseTreeNode raiz)//recorrido del arbol de forma recursiva 
+        private int MiRecorrido(ParseTreeNode raiz)
         {
-            if (raiz.ChildNodes.Count == 3)// se sabe q si la raiz tiene 3 nodos va a ser una expresion por ejemplo 78*8
+            if (raiz.ChildNodes.Count == 3)
             {
-                if (raiz.ChildNodes[1].Term.Name.ToString() == "*") //tomar en cuenta que es mas optimo hacerlo con un switch
+                if (raiz.ChildNodes[1].Term.Name.ToString() == "*")
                 {
                     return MiRecorrido(raiz.ChildNodes[0]) * MiRecorrido(raiz.ChildNodes[2]);
                 }
@@ -33,7 +33,7 @@ namespace BLL
                 {
                     return MiRecorrido(raiz.ChildNodes[0]) / MiRecorrido(raiz.ChildNodes[2]);
                 }
-                else // es '('numero')'
+                else
                 {
                     return MiRecorrido(raiz.ChildNodes[1]);
                 }
